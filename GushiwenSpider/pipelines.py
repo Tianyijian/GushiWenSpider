@@ -86,7 +86,7 @@ class ParseViewPipeline(object):
     view_list = []
     main_list = []
     fanyi_list = []
-
+    insert_num = 1  # 大于此数量时进行插入数据库
     def process_item(self, item, spider):
         """
         提取: https://so.gushiwen.org/shiwenv_d3e3283daac5.aspx
@@ -107,7 +107,7 @@ class ParseViewPipeline(object):
         # 提取正文，写入数据库
         poetry_mainbody = extract_poetry_mainbody("".join(item['poetry_mainbody_meta_content']))  # list
         self.main_list.append((view_num, poetry_mainbody))
-        if len(self.main_list) >= 10:
+        if len(self.main_list) >= self.insert_num:
             sqli = 'insert into main_content values(%s,%s)'
             self.insert_data(sqli, self.main_list)
             self.main_list.clear()
@@ -138,7 +138,7 @@ class ParseViewPipeline(object):
         logging.debug("====> fanyi_id: " + fanyi_id)
         # 插入翻译数据
         sql = 'insert into fanyi(fanyi_id, fanyi_link, fanyi, zhushi) values(%s,%s,%s, %s)'
-        if len(self.fanyi_list) >= 10:
+        if len(self.fanyi_list) >= self.insert_num:
             self.insert_data(sql, self.fanyi_list)
             self.fanyi_list.clear()
 
@@ -150,11 +150,11 @@ class ParseViewPipeline(object):
         values = (view_num, poetry_link, poetry_dynasty,
                   poetry_name, author_name, view_num, fanyi_id)
         self.view_list.append(values)
-        if len(self.view_list) >= 10:
+        if len(self.view_list) >= self.insert_num:
             self.insert_data(view_sql, self.view_list)
             self.view_list.clear()
 
-    # 批量插入数据
+    # 批量插入数据 TODO 解决execute的异常处理问题
     def insert_data(self, sql, data):
         try:
             num = cur.executemany(sql, data)
@@ -162,7 +162,7 @@ class ParseViewPipeline(object):
             conn.commit()
         except Exception as e:
             logging.error("====> " + str(e))
-            conn.rollback()
+            # conn.rollback()
         return
 
 

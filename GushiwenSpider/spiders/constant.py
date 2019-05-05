@@ -5,12 +5,12 @@
 """
 
 start_urls = [
-    # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=1'   # 先秦
-     'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=2'   # 两汉
+    'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=1',   # 先秦
+     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=2'   # 两汉
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=3'   # 魏晋 3210
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=4'   # 南北朝	6720
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=5'   # 隋代	2110
-    # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=6'   # 唐   10000->7000->886
+    # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=6'   # 唐   10000->6121->886
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=7'   # 五代    ->493
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=8'   # 宋     ->2656->302
     # 'https://www.gushiwen.org/shiwen/default.aspx?page=1&type=3&id=9'   # 金       6440->   ->40+

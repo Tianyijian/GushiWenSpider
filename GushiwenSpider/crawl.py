@@ -33,6 +33,6 @@ def crawl_fan_yi():
 
 
 if __name__ == '__main__':
-    # craw_url()
-    crawl_view()
+    craw_url()
+    # crawl_view()
     # crawl_fan_yi()
