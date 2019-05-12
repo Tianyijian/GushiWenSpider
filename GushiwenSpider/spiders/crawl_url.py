@@ -8,7 +8,7 @@ from scrapy.loader import ItemLoader
 import GushiwenSpider.spiders.constant as defines
 
 
-class GushiwenSpider(CrawlSpider):
+class UrlSpider(CrawlSpider):
     """
     爬取古诗文网（https://www.gushiwen.org/），提取出文章内容、翻译保存到数据库
     本程序为主程序，负责提取作品的URL，分朝代写入redis队列中。
@@ -29,7 +29,7 @@ class GushiwenSpider(CrawlSpider):
 
     custom_settings = {
         "ITEM_PIPELINES": {
-            'GushiwenSpider.pipelines.GushiwenPipeline': 300
+            'GushiwenSpider.pipelines.UrlPipeline': 300
         },
     }
 
@@ -41,5 +41,5 @@ class GushiwenSpider(CrawlSpider):
 
 if __name__ == '__main__':
     process = CrawlerProcess()
-    process.crawl(GushiwenSpider)
+    process.crawl(UrlSpider)
     process.start()

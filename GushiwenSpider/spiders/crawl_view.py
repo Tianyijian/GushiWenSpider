@@ -6,7 +6,7 @@ from GushiwenSpider.items import ViewItem
 from scrapy.crawler import CrawlerProcess
 
 
-class ViewSdier(RedisSpider):
+class ViewSpider(RedisSpider):
     """
     提取View页面主要内容：
     作品名称、作者、朝代、作品正文、翻译链接(fanyi_123.aspx, shangxi_123.aspx)
@@ -42,5 +42,5 @@ class ViewSdier(RedisSpider):
 
 if __name__ == '__main__':
     process = CrawlerProcess()
-    process.crawl(ViewSdier)
+    process.crawl(ViewSpider)
     process.start()

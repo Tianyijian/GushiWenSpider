@@ -1,38 +1,14 @@
 # _*_ coding:utf8 _*_
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from scrapy.http import HtmlResponse
-import logging
-import time
 import random
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 
-class ClickMiddleware(object):
-    def process_request(self, request, spider):
-        if spider.name == 'view_spider':
-            url = request.url
-            try:
-                spider.driver.get(url)
-                look_more_xpath = '//div[@class="left"]/div[@class="sons"][2]/div[@class="contyishang"]/div[3]'
-                spider.driver.find_element_by_xpath(look_more_xpath).click()
-                true_page = spider.driver.page_source
-                time.sleep(1)
-                logging.debug("---------------click done")
-                return HtmlResponse(url, body=true_page, encoding='utf-8', request=request)
-            except Exception as e:
-                logging.error('click middleware error: ' + str(e))
-        else:
-            return None
-
-
-"""避免被ban策略之一：使用useragent池。
-使用注意：需在settings.py中进行相应的设置。
-"""
-
-
 class RotateUserAgentMiddleware(UserAgentMiddleware):
+    """
+    避免被ban策略之一：使用useragent池。
+    使用注意：需在settings.py中进行相应的设置。
+    """
+
     def __init__(self, user_agent=''):
         self.user_agent = user_agent
 

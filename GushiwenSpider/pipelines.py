@@ -66,10 +66,10 @@ def lpush_fanyi_url_by_id(id):
     return url
 
 
-class GushiwenPipeline(object):
+class UrlPipeline(object):
     """
     提取作品链接 https://so.gushiwen.org/shiwenv_4c5705b99143.aspx
-    存入redis队列
+    存入redis队列 view:start_urls
     """
 
     def process_item(self, item, spider):
