@@ -15,9 +15,9 @@ import logging
 定义公用变量
 """
 rooturl = 'https://so.gushiwen.org'
-# 数据库表结构见 数据库表结构.xlsx
+# 数据库表结构见 CreateDB.sql
 conn = pymysql.connect(
-    host='47.95.199.35',
+    host='localhost',
     port=3306,
     user='tyj',
     passwd='tyj',
